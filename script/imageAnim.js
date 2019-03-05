@@ -102,6 +102,10 @@
    	
 
    createPuzzlePieces(this.dataset.puzzleref);
+
+   for (var piece =0; piece< dropZones.length; piece++){
+   	dropZones[piece].innerHTML ="";
+   }
    
 
    	}
