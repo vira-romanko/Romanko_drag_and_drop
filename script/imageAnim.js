@@ -15,6 +15,7 @@
 
 	// get a reference to the drop area
 	let dropZones = document.querySelectorAll('.drop-zone');
+	
 
 
 	//functions go in the middle
@@ -28,18 +29,22 @@
 			let newPuzzlePiece = `<img id="piece${index}" class="puzzle-image" src="images/${piece+ pictureIndex}.jpg" alt="puzzle piece" draggable>`
 
 			piecesBoard.innerHTML += newPuzzlePiece;
+
+			
 		});
 
 		initDrag();
+		
+		
 	}
 
 	// drag and drop functunality
 	// this is a 3-step process
-	//1.handle the drag ivent
+	//1.handle the drag event
 	//2. handle the dragover event
 	//3. handle the drop enent
 	//
-	//dragging sets some data referance (an audio, ima sourse, etc)
+	//dragging sets some data referance (an audio, img sourse, etc)
 	//dragover -> just prevent the default behaviour
 	// on a drop is where the magic happens -> script that behaviour , get the data referance and
 	// do what you need to do with it
@@ -52,6 +57,9 @@
 			});
 
 		});
+
+
+
 	}
 
 	// handle the drop
@@ -60,14 +68,27 @@
 		zone.addEventListener("dragover", function(e){
 			e.preventDefault();
 			console.log('drag over me now!!!');
+
 		});
 		zone.addEventListener("drop", function(e) {
 			e.preventDefault();
 			console.log('you dropped something on me');
+			if (zone.children.length > 0){
+		
+		    return;
+			
+		}
+			 
+
 
 			let piece = e.dataTransfer.getData("text/plain");
 			e.target.appendChild(document.querySelector(`#${piece}`));
+			
 		});
+		
+
+
+
 	});
 
 
@@ -78,14 +99,23 @@
    	piecesBoard.innerHTML = "";
 
    	//generate new pieces
-   	createPuzzlePieces(this.dataset.puzzleref);
-   }
+   	
+
+   createPuzzlePieces(this.dataset.puzzleref);
+   
+
+   	}
+
+
 
 
   //event handling goes there
-  puzzleSelectors.forEach(button => button.addEventListener("click", resetPuzzlePieces));
+  puzzleSelectors.forEach(button => button.addEventListener("click", resetPuzzlePieces, ));
+
+  
 // call this function to set up/ generate the pieces on load
   createPuzzlePieces(0);
+ 
 
 
 
